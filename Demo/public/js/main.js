@@ -2,7 +2,7 @@
    Firebase Setup
 ========================= */
 const firebaseConfig = {
-  apiKey: "AIzaSyB67GerJlAu15rw8vOzvEjEUQLxIC53Apg",
+  apiKey: "Firebase_Key",
   authDomain: "gamesecai-28.firebaseapp.com",
   projectId: "gamesecai-28",
   storageBucket: "gamesecai-28.firebasestorage.app",
@@ -22,7 +22,7 @@ console.log("🔥 Firebase is ready! Database connected!");
 /* =========================
    Gemini API Key Setup
 ========================= */
-const GEMINI_API_KEY = "AIzaSyB8EzwfTNJNHLhvv5xHRCfZbLJ5XFTB6XY";
+const GEMINI_API_KEY = "Gemini_API_Key";
 window.GEMINI_API_KEY = GEMINI_API_KEY;
 window.GEMINI_MODEL = "gemini-2.5-flash";
 const QUIZ_START_LEVEL = 'Medium';
