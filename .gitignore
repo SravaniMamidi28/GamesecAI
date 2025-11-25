@@ -1,0 +1,7 @@
+functions/node_modules/
+functions/lib/
+functions/.npm/
+firebase-debug.log
+.logs/
+.cache/
+DS_Store
