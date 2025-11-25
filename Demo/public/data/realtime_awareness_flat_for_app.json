@@ -1,0 +1,544 @@
+[
+  {
+    "id": "AP-E-1",
+    "mission": "AI Phishing",
+    "difficulty": "Easy",
+    "text": "You get a text claiming to be from your delivery service with a short link to reschedule. What should you do first?",
+    "options": [
+      {"id":"A","text":"Tap the link and log in quickly."},
+      {"id":"B","text":"Ignore the text and delete it immediately."},
+      {"id":"C","text":"Open the delivery app directly to check your order status."},
+      {"id":"D","text":"Reply STOP to the number."}
+    ],
+    "correct": "C",
+    "why": "Smishing often uses shortened links. Opening the official app or website avoids malicious links.",
+    "action": "Open the trusted app or type the official URL in your browser; do not click the texted link."
+  },
+  {
+    "id": "AP-E-2",
+    "mission": "AI Phishing",
+    "difficulty": "Easy",
+    "text": "An email warns your mailbox is full and asks you to 're-validate' using a button. The sender domain is 'support-mailbox.co'. Best first move?",
+    "options": [
+      {"id":"A","text":"Click the button and re-enter your credentials."},
+      {"id":"B","text":"Hover over the button to preview the URL and verify the domain."},
+      {"id":"C","text":"Forward it to your team so they can be aware."},
+      {"id":"D","text":"Reply asking if it's legitimate."}
+    ],
+    "correct": "B",
+    "why": "Look-alike domains are a common phishing tactic. Hovering shows the true destination.",
+    "action": "Hover to inspect the link; if suspicious, report and visit your account via the official site instead."
+  },
+  {
+    "id": "AP-E-3",
+    "mission": "AI Phishing",
+    "difficulty": "Easy",
+    "text": "A QR code flyer in the office lobby promises 'mandatory benefits update—scan to sign'. What is safest?",
+    "options": [
+      {"id":"A","text":"Scan it and sign in with work credentials."},
+      {"id":"B","text":"Take a photo and scan later at home."},
+      {"id":"C","text":"Confirm with HR via the official portal or email before scanning."},
+      {"id":"D","text":"Peel the flyer off and throw it away."}
+    ],
+    "correct": "C",
+    "why": "Quishing (QR phishing) can send you to fake login pages.",
+    "action": "Verify the request via official HR channels; access updates from the known HR portal, not ad‑hoc QR codes."
+  },
+  {
+    "id": "AP-E-4",
+    "mission": "AI Phishing",
+    "difficulty": "Easy",
+    "text": "You receive a voicemail that sounds like your manager urgently asking for gift cards. The number is unfamiliar. Best action?",
+    "options": [
+      {"id":"A","text":"Comply quickly to avoid delay."},
+      {"id":"B","text":"Call back the number that left the voicemail."},
+      {"id":"C","text":"Independently contact your manager using a known channel to verify."},
+      {"id":"D","text":"Text the caller for more details."}
+    ],
+    "correct": "C",
+    "why": "Deepfake or spoofed voice scams use urgency and alternate numbers.",
+    "action": "Validate using a trusted contact method (directory/Teams) before acting on unusual requests."
+  },
+  {
+    "id": "AP-M-1",
+    "mission": "AI Phishing",
+    "difficulty": "Medium",
+    "text": "Your browser shows an OAuth consent screen for a new 'AI‑Doc Helper' requesting access to read your company drive. Colleague shared a doc link that triggered it. What now?",
+    "options": [
+      {"id":"A","text":"Approve access; it helps with documents."},
+      {"id":"B","text":"Deny and verify the app is approved in your organization's app catalog."},
+      {"id":"C","text":"Approve if the colleague says it's safe in chat."},
+      {"id":"D","text":"Ignore; closing the tab is enough."}
+    ],
+    "correct": "B",
+    "why": "Malicious apps can exfiltrate data via OAuth without passwords.",
+    "action": "Deny, then check your organization's approved apps list or contact IT before granting scopes."
+  },
+  {
+    "id": "AP-M-2",
+    "mission": "AI Phishing",
+    "difficulty": "Medium",
+    "text": "You get multiple MFA push requests you did not initiate (MFA fatigue). Best immediate response?",
+    "options": [
+      {"id":"A","text":"Approve one to stop the prompts."},
+      {"id":"B","text":"Deny all and change your password; notify security."},
+      {"id":"C","text":"Disable MFA temporarily."},
+      {"id":"D","text":"Ignore them; they will stop eventually."}
+    ],
+    "correct": "B",
+    "why": "Attackers spam approvals hoping you accept by mistake.",
+    "action": "Deny, rotate credentials, and alert security to investigate suspicious sign‑ins."
+  },
+  {
+    "id": "AP-M-3",
+    "mission": "AI Phishing",
+    "difficulty": "Medium",
+    "text": "A LinkedIn message from a recruiter sends a 'role spec' via a public drive link asking you to sign in with your work account. What should you do?",
+    "options": [
+      {"id":"A","text":"Use work credentials to access the file."},
+      {"id":"B","text":"Ask for the document via your company's applicant portal or share a non‑work email."},
+      {"id":"C","text":"Share your phone number for faster coordination."},
+      {"id":"D","text":"Forward to colleagues to check."}
+    ],
+    "correct": "B",
+    "why": "Social‑engineering often moves targets to credential‑harvesting sites.",
+    "action": "Use trusted recruiting channels; avoid entering work creds into unknown public links."
+  },
+  {
+    "id": "AP-M-4",
+    "mission": "AI Phishing",
+    "difficulty": "Medium",
+    "text": "Your inbox shows a 'thread‑hijack' reply in an existing vendor chain with a new invoice link. The sender's display name matches but the domain changed subtly. What next?",
+    "options": [
+      {"id":"A","text":"Pay immediately to keep terms."},
+      {"id":"B","text":"Open the link in a sandbox browser."},
+      {"id":"C","text":"Validate via a known vendor contact and compare the domain against previous messages."},
+      {"id":"D","text":"Reply asking for bank details to verify."}
+    ],
+    "correct": "C",
+    "why": "Business email compromise often uses conversation hijacking with look‑alike domains.",
+    "action": "Out‑of‑band verify with the vendor; check domain history in prior emails before acting."
+  },
+  {
+    "id": "AP-H-1",
+    "mission": "AI Phishing",
+    "difficulty": "Hard",
+    "text": "Security alerts you that your account created a new mail‑forwarding rule to an external address. You did not create it. First best step?",
+    "options": [
+      {"id":"A","text":"Delete the rule and move on."},
+      {"id":"B","text":"Reset password, revoke active sessions/tokens, enable device check, and report the incident."},
+      {"id":"C","text":"Email the external address asking why."},
+      {"id":"D","text":"Disable your mailbox temporarily."}
+    ],
+    "correct": "B",
+    "why": "Forwarding rules indicate possible mailbox compromise.",
+    "action": "Rotate creds, invalidate sessions/app passwords, review rules, and notify security per incident process."
+  },
+  {
+    "id": "AP-H-2",
+    "mission": "AI Phishing",
+    "difficulty": "Hard",
+    "text": "You suspect a vendor portal login page is fake but it uses HTTPS and a valid certificate. How do you verify safely?",
+    "options": [
+      {"id":"A","text":"Certificate means it's safe—log in."},
+      {"id":"B","text":"Check the URL carefully for typos and navigate via a known bookmark or typed domain."},
+      {"id":"C","text":"Open it in incognito; if it loads, it's legit."},
+      {"id":"D","text":"Ask the sender for a screenshot of their login."}
+    ],
+    "correct": "B",
+    "why": "HTTPS only encrypts traffic; it does not prove legitimacy of the site you intended.",
+    "action": "Type the official URL or use a saved bookmark; avoid email links when uncertain."
+  },
+  {
+    "id": "AP-H-3",
+    "mission": "AI Phishing",
+    "difficulty": "Hard",
+    "text": "A spear‑phish references a recent internal project and asks you to share a private doc externally via personal Gmail. What is the safest response?",
+    "options": [
+      {"id":"A","text":"Share but remove edit rights."},
+      {"id":"B","text":"Decline and report; verify with the project owner via a known internal channel."},
+      {"id":"C","text":"Create a copy on your desktop and send it."},
+      {"id":"D","text":"Ask the sender to send from their personal email too for confirmation."}
+    ],
+    "correct": "B",
+    "why": "Attackers use internal details from previous leaks or recon.",
+    "action": "Use internal channels and DLP policies; never share sensitive docs to personal emails without approval."
+  },
+  {
+    "id": "AP-H-4",
+    "mission": "AI Phishing",
+    "difficulty": "Hard",
+    "text": "A 'security update' page requests your recovery codes after you enabled a new authenticator. It claims 'codes required to sync'. What do you do?",
+    "options": [
+      {"id":"A","text":"Enter the codes so your devices stay in sync."},
+      {"id":"B","text":"Provide one code only; keep others safe."},
+      {"id":"C","text":"Stop and report; recovery codes should never be asked by web forms."},
+      {"id":"D","text":"Disable MFA to avoid the prompt."}
+    ],
+    "correct": "C",
+    "why": "Recovery codes are sensitive; legitimate sites won't ask you to submit them to 'verify'.",
+    "action": "Report the page and rotate MFA secrets if you suspect exposure."
+  },
+
+  {
+    "id": "PW-E-1",
+    "mission": "Password Hygiene",
+    "difficulty": "Easy",
+    "text": "Your browser suggests using a generated password when creating an account. What should you do?",
+    "options": [
+      {"id":"A","text":"Use the strong generated password and save it."},
+      {"id":"B","text":"Use your favorite password to remember easily."},
+      {"id":"C","text":"Use 'CompanyName2024' for consistency."},
+      {"id":"D","text":"Skip saving; email it to yourself."}
+    ],
+    "correct": "A",
+    "why": "Unique, long passwords reduce credential‑stuffing risk.",
+    "action": "Use a password manager or built‑in generator and save the credential."
+  },
+  {
+    "id": "PW-E-2",
+    "mission": "Password Hygiene",
+    "difficulty": "Easy",
+    "text": "Which is the best example of a strong password practice?",
+    "options": [
+      {"id":"A","text":"Reusing a complex password across sites."},
+      {"id":"B","text":"Using a passphrase like 'taco-river-lamp-galaxy' unique to the site."},
+      {"id":"C","text":"Using your pet's name with numbers."},
+      {"id":"D","text":"Short password plus frequent changes."}
+    ],
+    "correct": "B",
+    "why": "Unique passphrases are strong and memorable.",
+    "action": "Create unique passphrases per site; avoid reuse."
+  },
+  {
+    "id": "PW-E-3",
+    "mission": "Password Hygiene",
+    "difficulty": "Easy",
+    "text": "You receive a credential‑exposed alert for a streaming site you rarely use. What should you do regarding your work accounts?",
+    "options": [
+      {"id":"A","text":"Nothing—it's not work related."},
+      {"id":"B","text":"Change only the streaming site password."},
+      {"id":"C","text":"If you reused that password anywhere (including work), change those and enable MFA."},
+      {"id":"D","text":"Close the streaming account and ignore."}
+    ],
+    "correct": "C",
+    "why": "Password reuse turns minor breaches into major risk.",
+    "action": "Rotate any reused credentials and turn on MFA."
+  },
+  {
+    "id": "PW-E-4",
+    "mission": "Password Hygiene",
+    "difficulty": "Easy",
+    "text": "Your teammate asks for your password to 'check something quickly'. What's correct?",
+    "options": [
+      {"id":"A","text":"Share temporarily and change it later."},
+      {"id":"B","text":"Decline; accounts are individual and auditable."},
+      {"id":"C","text":"Share over chat so there's a record."},
+      {"id":"D","text":"Write it on a sticky note for them."}
+    ],
+    "correct": "B",
+    "why": "Account sharing breaks accountability and policy.",
+    "action": "Use proper access requests or pair while the owner is logged in."
+  },
+  {
+    "id": "PW-M-1",
+    "mission": "Password Hygiene",
+    "difficulty": "Medium",
+    "text": "Your organization is rolling out passkeys. Which is the safest approach?",
+    "options": [
+      {"id":"A","text":"Disable MFA because passkeys replace it."},
+      {"id":"B","text":"Enroll passkeys on at least two authenticators and keep recovery options updated."},
+      {"id":"C","text":"Use one device only so it's simple."},
+      {"id":"D","text":"Share passkeys with your assistant for backups."}
+    ],
+    "correct": "B",
+    "why": "Redundancy prevents lockout; passkeys resist phishing but still need backups.",
+    "action": "Register multiple authenticators (phone + security key) and store recovery codes securely."
+  },
+  {
+    "id": "PW-M-2",
+    "mission": "Password Hygiene",
+    "difficulty": "Medium",
+    "text": "Your password manager prompts that your work password appears in a known breach. Next best step?",
+    "options": [
+      {"id":"A","text":"Dismiss; it's probably old."},
+      {"id":"B","text":"Change the password immediately and review reuse across sites."},
+      {"id":"C","text":"Turn off notifications; they're distracting."},
+      {"id":"D","text":"Email the password to IT for review."}
+    ],
+    "correct": "B",
+    "why": "Exposure alerts require immediate rotation and reuse checks.",
+    "action": "Change the password, enable MFA, and ensure uniqueness across services."
+  },
+  {
+    "id": "PW-M-3",
+    "mission": "Password Hygiene",
+    "difficulty": "Medium",
+    "text": "You find a shared team account without MFA protecting a production dashboard. Policy allows 'break‑glass' accounts only. What should you do?",
+    "options": [
+      {"id":"A","text":"Use it temporarily; add MFA later."},
+      {"id":"B","text":"Report and migrate to individual accounts with least privilege and MFA."},
+      {"id":"C","text":"Change the shared password and DM the team."},
+      {"id":"D","text":"Write it in a secure spreadsheet."}
+    ],
+    "correct": "B",
+    "why": "Shared accounts remove accountability and are risky without MFA.",
+    "action": "Replace with individual accounts + MFA; reserve break‑glass with strict controls."
+  },
+  {
+    "id": "PW-M-4",
+    "mission": "Password Hygiene",
+    "difficulty": "Medium",
+    "text": "A contractor requests temporary elevated access for a maintenance window. What's the most secure way to grant it?",
+    "options": [
+      {"id":"A","text":"Give admin and ask them to be careful."},
+      {"id":"B","text":"Grant just‑in‑time, least‑privilege access with time‑bound approval and auditing."},
+      {"id":"C","text":"Share a permanent admin account then rotate later."},
+      {"id":"D","text":"Ask them to use your account for convenience."}
+    ],
+    "correct": "B",
+    "why": "JIT access reduces exposure and is auditable.",
+    "action": "Use privileged access management to provide time‑boxed rights with logs."
+  },
+  {
+    "id": "PW-H-1",
+    "mission": "Password Hygiene",
+    "difficulty": "Hard",
+    "text": "You suspect an employee's password was phished but MFA stopped the login. What's the correct incident response?",
+    "options": [
+      {"id":"A","text":"Do nothing since MFA blocked it."},
+      {"id":"B","text":"Force password reset, revoke sessions/tokens, review sign‑in logs, and check for mail rules."},
+      {"id":"C","text":"Tell the user to be careful next time."},
+      {"id":"D","text":"Disable the account for a week."}
+    ],
+    "correct": "B",
+    "why": "Credentials may still be exposed; sessions and tokens can persist.",
+    "action": "Rotate, revoke, and investigate indicators of compromise per IR playbook."
+  },
+  {
+    "id": "PW-H-2",
+    "mission": "Password Hygiene",
+    "difficulty": "Hard",
+    "text": "You need to store app secrets used by a CI pipeline. Best practice?",
+    "options": [
+      {"id":"A","text":"Commit them encrypted to the repo."},
+      {"id":"B","text":"Use a secrets manager with scoped access and rotation."},
+      {"id":"C","text":"Email them to the build server admin."},
+      {"id":"D","text":"Keep them in an environment variable forever."}
+    ],
+    "correct": "B",
+    "why": "Centralized secrets managers provide rotation, auditing, and least privilege.",
+    "action": "Use a secrets vault (e.g., cloud KMS/secret manager) with rotation policy and minimal scope."
+  },
+  {
+    "id": "PW-H-3",
+    "mission": "Password Hygiene",
+    "difficulty": "Hard",
+    "text": "Your SOC flags successful logins from two distant countries within 30 minutes for the same user. What control helps most here?",
+    "options": [
+      {"id":"A","text":"Password rotation every 30 days."},
+      {"id":"B","text":"Impossible travel detection with conditional access step‑up."},
+      {"id":"C","text":"Disabling copy‑paste in password fields."},
+      {"id":"D","text":"Forcing complex special characters."}
+    ],
+    "correct": "B",
+    "why": "Behavioral analytics can block or step‑up auth for anomalous patterns.",
+    "action": "Enable conditional access to challenge or block on impossible travel events."
+  },
+  {
+    "id": "PW-H-4",
+    "mission": "Password Hygiene",
+    "difficulty": "Hard",
+    "text": "An executive insists on storing passwords in a personal spreadsheet. What's the best remediation approach?",
+    "options": [
+      {"id":"A","text":"Allow it if the file is encrypted."},
+      {"id":"B","text":"Move credentials to an enterprise password manager with role‑based sharing and audit logs."},
+      {"id":"C","text":"Ask their assistant to manage the sheet."},
+      {"id":"D","text":"Print the passwords and lock them."}
+    ],
+    "correct": "B",
+    "why": "Enterprise managers provide controlled sharing, auditing, and security features.",
+    "action": "Migrate to a managed vault; disable personal storage of credentials for work."
+  },
+
+  {
+    "id": "WF-E-1",
+    "mission": "Public Wi‑Fi & Devices",
+    "difficulty": "Easy",
+    "text": "At an airport, two Wi‑Fi networks have the airport name. Which do you join?",
+    "options": [
+      {"id":"A","text":"The one with the strongest signal."},
+      {"id":"B","text":"Any—public Wi‑Fi is safe with HTTPS."},
+      {"id":"C","text":"Confirm the official SSID with staff/signage and use that."},
+      {"id":"D","text":"Create a hotspot named after the airport and use it."}
+    ],
+    "correct": "C",
+    "why": "Evil‑twin networks mimic names to intercept traffic.",
+    "action": "Verify the official SSID and use a VPN for work."
+  },
+  {
+    "id": "WF-E-2",
+    "mission": "Public Wi‑Fi & Devices",
+    "difficulty": "Easy",
+    "text": "You're asked to plug a 'charging station USB' into your laptop at a conference. What should you do?",
+    "options": [
+      {"id":"A","text":"Plug it in; it's just power."},
+      {"id":"B","text":"Use a USB data‑blocker or your own charger; avoid unknown USB devices."},
+      {"id":"C","text":"Borrow a cable from someone else."},
+      {"id":"D","text":"Disable Wi‑Fi first then plug it in."}
+    ],
+    "correct": "B",
+    "why": "Juice‑jacking and HID attacks can use USB data pins.",
+    "action": "Use your own wall charger or a data‑blocking adapter."
+  },
+  {
+    "id": "WF-E-3",
+    "mission": "Public Wi‑Fi & Devices",
+    "difficulty": "Easy",
+    "text": "While on hotel Wi‑Fi, your laptop prompts to 'share files with devices on this network'. What's correct?",
+    "options": [
+      {"id":"A","text":"Enable it for faster sharing."},
+      {"id":"B","text":"Enable only if you trust all guests."},
+      {"id":"C","text":"Keep device discovery/file sharing OFF on public networks."},
+      {"id":"D","text":"Turn it on and off as needed each time."}
+    ],
+    "correct": "C",
+    "why": "Public networks increase lateral exposure.",
+    "action": "Use 'Public network' profile; keep sharing/discovery off."
+  },
+  {
+    "id": "WF-E-4",
+    "mission": "Public Wi‑Fi & Devices",
+    "difficulty": "Easy",
+    "text": "Your phone offers to auto‑join known public networks. What is safest?",
+    "options": [
+      {"id":"A","text":"Allow auto‑join for convenience."},
+      {"id":"B","text":"Disable auto‑join for public SSIDs and forget old networks."},
+      {"id":"C","text":"Rename networks to avoid confusion."},
+      {"id":"D","text":"Use airplane mode instead of Wi‑Fi."}
+    ],
+    "correct": "B",
+    "why": "Auto‑join can connect you to spoofed SSIDs without notice.",
+    "action": "Turn off auto‑join on public networks; prune old SSIDs."
+  },
+  {
+    "id": "WF-M-1",
+    "mission": "Public Wi‑Fi & Devices",
+    "difficulty": "Medium",
+    "text": "You're traveling and must access internal dashboards. What's the most secure setup?",
+    "options": [
+      {"id":"A","text":"Public Wi‑Fi + saved password in browser."},
+      {"id":"B","text":"Public Wi‑Fi + corporate VPN + device compliance (disk encryption, screen lock)."},
+      {"id":"C","text":"Phone hotspot without VPN."},
+      {"id":"D","text":"Hotel ethernet without updates."}
+    ],
+    "correct": "B",
+    "why": "VPN with compliant device posture reduces exposure on untrusted networks.",
+    "action": "Connect via corporate VPN on a compliant, updated device."
+  },
+  {
+    "id": "WF-M-2",
+    "mission": "Public Wi‑Fi & Devices",
+    "difficulty": "Medium",
+    "text": "A coworker AirDrops you a 'conference agenda.pdf' in a crowded hall. Your device name is visible. Best practice?",
+    "options": [
+      {"id":"A","text":"Accept to save time."},
+      {"id":"B","text":"Set AirDrop/Nearby Share to 'Contacts only' or 'Receiving off'."},
+      {"id":"C","text":"Rename device to something generic only."},
+      {"id":"D","text":"Turn on Bluetooth discoverable mode."}
+    ],
+    "correct": "B",
+    "why": "Public sharing exposes you to unsolicited files and tracking.",
+    "action": "Restrict device‑to‑device sharing in public spaces."
+  },
+  {
+    "id": "WF-M-3",
+    "mission": "Public Wi‑Fi & Devices",
+    "difficulty": "Medium",
+    "text": "You must print a boarding pass at a cybercafé. Which is safest?",
+    "options": [
+      {"id":"A","text":"Log into your work email on the public PC and print."},
+      {"id":"B","text":"Use your phone to access the airline then AirPrint/WebPrint directly; avoid logging into work on public PCs."},
+      {"id":"C","text":"Email the PDF to the shop clerk."},
+      {"id":"D","text":"Insert your USB drive into the public PC to print."}
+    ],
+    "correct": "B",
+    "why": "Public PCs may have keyloggers/malware; avoid work logins and removable media use.",
+    "action": "Use your own device to retrieve and print; avoid entering credentials on public PCs."
+  },
+  {
+    "id": "WF-M-4",
+    "mission": "Public Wi‑Fi & Devices",
+    "difficulty": "Medium",
+    "text": "Your laptop firewall asks about allowing inbound connections for a new conference app on hotel Wi‑Fi. Best choice?",
+    "options": [
+      {"id":"A","text":"Allow on all networks."},
+      {"id":"B","text":"Allow on private networks only; block on public networks."},
+      {"id":"C","text":"Block everywhere; uninstall the app."},
+      {"id":"D","text":"Allow if the signal is strong."}
+    ],
+    "correct": "B",
+    "why": "Restrict inbound services on public networks to reduce attack surface.",
+    "action": "Permit only on trusted/private networks; block on public."
+  },
+  {
+    "id": "WF-H-1",
+    "mission": "Public Wi‑Fi & Devices",
+    "difficulty": "Hard",
+    "text": "While using café Wi‑Fi, a captive portal asks you to install a 'security certificate' to continue. What should you do?",
+    "options": [
+      {"id":"A","text":"Install it; portals require certificates."},
+      {"id":"B","text":"Decline; installing unknown root certificates can enable HTTPS interception."},
+      {"id":"C","text":"Install then remove after browsing."},
+      {"id":"D","text":"Switch to cellular; certificates are harmless."}
+    ],
+    "correct": "B",
+    "why": "Malicious or misconfigured root certs can intercept encrypted traffic.",
+    "action": "Do not install untrusted certificates; use VPN or cellular instead."
+  },
+  {
+    "id": "WF-H-2",
+    "mission": "Public Wi‑Fi & Devices",
+    "difficulty": "Hard",
+    "text": "You must join a client guest Wi‑Fi requiring MAC address registration. What is the most secure device posture beforehand?",
+    "options": [
+      {"id":"A","text":"Disable OS updates to avoid reboots."},
+      {"id":"B","text":"Ensure full‑disk encryption, OS patches, EDR, and screen lock are enabled."},
+      {"id":"C","text":"Turn off the firewall to reduce prompts."},
+      {"id":"D","text":"Create a new local admin for the trip."}
+    ],
+    "correct": "B",
+    "why": "Hardened, updated devices limit impact on untrusted networks.",
+    "action": "Travel with a compliant, encrypted, EDR‑protected device."
+  },
+  {
+    "id": "WF-H-3",
+    "mission": "Public Wi‑Fi & Devices",
+    "difficulty": "Hard",
+    "text": "A kiosk prints your boarding pass but also displays your email briefly. What additional risk exists and what to do?",
+    "options": [
+      {"id":"A","text":"No risk; kiosks are isolated."},
+      {"id":"B","text":"Residual data and keylogging risk; avoid entering work creds and clear caches/close sessions."},
+      {"id":"C","text":"Only risk is shoulder surfing; stand closer."},
+      {"id":"D","text":"Use incognito to eliminate risk entirely."}
+    ],
+    "correct": "B",
+    "why": "Shared machines can store data or run malware.",
+    "action": "Avoid work logins; if used, sign out, clear data, and change passwords if necessary."
+  },
+  {
+    "id": "WF-H-4",
+    "mission": "Public Wi‑Fi & Devices",
+    "difficulty": "Hard",
+    "text": "During travel, you lose your corporate laptop. What's the first best step to reduce exposure?",
+    "options": [
+      {"id":"A","text":"Change your email password later."},
+      {"id":"B","text":"Report immediately so IT can remote‑wipe/disable and start incident response."},
+      {"id":"C","text":"Buy a replacement and restore from personal backup."},
+      {"id":"D","text":"Post in chat asking if anyone saw it."}
+    ],
+    "correct": "B",
+    "why": "Rapid response (remote wipe/disable) limits data exposure and supports legal/regulatory steps.",
+    "action": "Report loss immediately; IT can revoke tokens and wipe the device per policy."
+  }
+]

@@ -1,0 +1,692 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>GameSecAI — Final with AI & Adaptive</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<!-- Firebase Compat SDKs (v10.x, v8-style syntax) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-functions-compat.js"></script>
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+  <div class="bg"><div class="grid"></div><div class="floaters"></div></div>
+
+  <div class="app" role="application" aria-label="GameSecAI Demo App">
+    <header class="header" role="banner">
+      <div class="brand" role="img" aria-label="GameSecAI logo">
+        <div class="logo" aria-hidden="true">GS</div>
+        <div>
+          <div class="title">GameSecAI</div>
+          <div class="mutedSmall" style="color:var(--muted); font-size:13px">Adaptive gamified cyber awareness</div>
+        </div>
+      </div>
+
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <button class="tab active" data-tab="landing" onclick="gotoView('landing')" aria-controls="landing">Landing</button>
+        <button class="tab" data-tab="dashboard" onclick="gotoView('dashboard')" aria-controls="dashboard">Dashboard</button>
+        <button class="tab" data-tab="quiz" onclick="gotoView('quiz')" aria-controls="quiz">Quiz</button>
+        <button class="tab" data-tab="missions" onclick="gotoView('missions')" aria-controls="missions">Missions</button>
+        <button class="tab" data-tab="leaderboard" onclick="gotoView('leaderboard')" aria-controls="leaderboard">Leaderboard</button>
+
+<button
+    id="adminNavBtn"
+    class="tab"
+    data-view="admin"
+    aria-controls="admin"
+    onclick="gotoView('admin')"
+    style="display:none">
+    Admin
+  </button>
+       
+<button class="tab" data-tab="profile" onclick="gotoView('profile')" aria-controls="profile">Profile</button>
+        <button class="tab" onclick="logout()" style="color:var(--danger)">Logout</button>
+      </nav>
+    </header>
+
+    <main class="layout" role="main">
+      <section class="left">
+        <div id="landing" class="card view" role="region" aria-label="Landing view">
+          <div class="landing">
+            <div class="cta">
+              <div class="bigTitle">Welcome to GameSecAI</div>
+              <div class="lead muted">Level up your online safety with bite-sized quizzes and cyber-training games.
+Begin with a quick risk check to get missions designed just for you.</div>
+              <div style="margin-top:14px" class="flex">
+                <button class="btn primary" onclick="gotoView('quiz')">Start Quiz</button>
+                <button class="btn ghost" onclick="gotoView('dashboard')">Go to Dashboard</button>
+              </div>
+            </div>
+
+            <div style="width:240px; text-align:center;">
+              <div class="wire">
+                <div class="mutedSmall">Quick Stats</div>
+                <div style="margin-top:10px">
+                  <div class="mutedSmall">Active Missions</div>
+                  <div style="font-weight:800; font-size:22px" id="statMissions">3</div>
+                </div>
+                <div style="margin-top:10px">
+                  <div class="mutedSmall">Avg Risk</div>
+                  <div style="font-weight:800; font-size:22px" id="statAvgRisk">72%</div>
+                </div>
+                <div style="margin-top:12px">
+                  <button class="btn ghost" onclick="gotoView('profile')">View Profile</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+<!-- ============================
+     🎮 Gamified Challenges Section
+     ============================ -->
+<div class="gameSection">
+  <h2 class="tiny" style="font-size:14px; letter-spacing:0.15em; color:var(--accent2); margin-bottom:12px;">
+    🎮 Gamified Cyber Challenges
+  </h2>
+  <p class="mutedSmall" style="margin-bottom:16px;">
+    Boost your skills with bite-sized interactive games.
+  </p>
+
+  <div class="gameGrid">
+    
+    <!-- 📨 Phishing Simulator -->
+    <div class="gameCard">
+      <div class="gameIcon">📨</div>
+      <div class="gameTitle">Phishing Simulator</div>
+      <div class="gameDesc">Spot suspicious emails & avoid traps.</div>
+      <button class="btn primary" onclick="startPhishingGame()">Play</button>
+    </div>
+
+    <!-- 🌐 Website Inspector -->
+    <div class="gameCard">
+      <div class="gameIcon">🌐</div>
+      <div class="gameTitle">Website Inspector</div>
+      <div class="gameDesc">Identify unsafe website elements.</div>
+      <button class="btn primary" onclick="startInspectorGame()">Play</button>
+
+    </div>
+
+    <!-- 🔐 Password Fortress -->
+    <div class="gameCard">
+      <div class="gameIcon">🔐</div>
+      <div class="gameTitle">Password Fortress</div>
+      <div class="gameDesc">Build strong passwords & test strength.</div>
+      <button class="btn primary" onclick="startPasswordGame()">Play</button>
+
+    </div>
+
+    <!-- 📶 Wi-Fi Threat Finder -->
+    <div class="gameCard">
+      <div class="gameIcon">📶</div>
+      <div class="gameTitle">Wi-Fi Threat Finder</div>
+      <div class="gameDesc">Choose the safe network in public places.</div>
+      <button class="btn primary" onclick="startWifiGame()">Play</button>
+
+    </div>
+
+  </div>
+</div>
+</div>
+
+
+        <div id="dashboard" class="card view" role="region" aria-label="Dashboard" style="display:none">
+          <h2>Dashboard</h2>
+          <div class="wire" aria-live="polite">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <div class="tiny">Welcome back, <strong id="userName">Sravya</strong></div>
+                <div style="margin-top:8px; font-weight:800; font-size:18px">Risk Score: <span id="riskBig" style="background:linear-gradient(90deg,var(--accent1),var(--accent2)); -webkit-background-clip:text; color:transparent">75%</span></div>
+                <div class="mutedSmall" id="riskNote">Medium Risk — keep training</div>
+<!-- Risk Trend Chart -->
+<div style="margin-top:16px;">
+  <h3 class="tiny">Risk Trend</h3>
+  <div style="height:160px; background:rgba(255,255,255,0.02); border-radius:8px; padding:10px;">
+    <canvas id="riskChartCanvas" style="width:100%; height:140px;"></canvas>
+  </div>
+</div>
+              </div>
+
+              <div class="rightAlign" style="gap:8px;">
+                <button class="btn ghost" onclick="gotoView('profile')">Profile</button>
+                <button class="btn primary" onclick="gotoView('missions')">Missions</button>
+              </div>
+            </div>
+
+            <div style="margin-top:12px;">
+              <h3 class="muted">Missions Overview</h3>
+              <div class="missions" id="dashboardMissions" aria-live="polite"></div>
+            </div>
+          </div>
+
+          <div style="margin-top:12px" class="card">
+            <h3 class="muted">Quick Actions</h3>
+            <div class="flex" style="margin-top:8px">
+              <button class="btn primary" onclick="gotoView('quiz')">Start Quiz</button>
+              <button class="btn ghost" onclick="downloadCSV()">Export Logs</button>
+              <button class="btn ghost" onclick="confirmReset()">Reset Demo</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="quiz" class="card view" role="region" aria-label="Quiz" style="display:none">
+          <h2>Quiz</h2>
+          <div class="wire" aria-live="polite">
+            <div style="display:flex; gap:16px; align-items:flex-start;">
+              <div style="flex:1">
+                <div class="question" id="qText">Loading question...</div>
+                <div class="answers" id="answers" role="listbox" aria-label="Answer choices"></div>
+<div id="feedbackNote" style="margin-top: 10px; display: none; font-weight: bold;"></div>
+<div id="aiExplain" style="margin-top: 10px; display: none;"></div>
+<div id="coachNote" style="margin-top: 10px; display: none;"></div>
+               <div class="sliderWrap">
+  <div class="mutedSmall">Confidence:</div>
+  <div id="confidenceStars" style="margin-top:6px; font-size:20px;"></div>
+</div>
+
+                <div style="margin-top:10px;">
+                    <button class="btn ghost" id="aiHintBtn" onclick="aiHintForCurrent()">AI Hint</button>
+                    <div id="aiHint" class="aiHintBox" style="display:none"></div>
+                </div>
+
+                <div style="margin-top:12px; display:flex; gap:8px; align-items:center;">
+                  <button id="submitAnswer">Submit Answer</button>
+<button class="btn ghost" id="skipQuestion">Skip</button>
+<button class="btn ghost" id="finishBtn">Finish & Results</button><div style="flex:1"></div>
+                  <div class="mutedSmall">Question <span id="qIndex">1</span> / <span id="qTotal">1</span></div>
+                </div>
+              </div>
+
+              <aside style="width:280px;">
+                <div class="chat" role="region" aria-label="Ask AI panel">
+                  <h3 class="tiny">Ask Cydor🤖</h3>
+                  <div class="box" id="chatBox">Cydor🤖 is here to help you:</div>
+                  <div style="margin-top:8px; display:flex; gap:8px;">
+                    <input id="chatInput" placeholder="What is GamesecAI?" style="flex:1; padding:8px; border-radius:6px; border:1px solid rgba(255,255,255,0.03); background:transparent; color:var(--text)" aria-label="Chat question"/>
+                    <button class="btn primary" onclick="postChat()">Ask</button>
+                  </div>
+                </div>
+
+                <div style="margin-top:12px;" class="card">
+                  <div class="tiny">Quiz Stats</div>
+                  <div style="margin-top:8px" class="mutedSmall">Correct: <span id="statCorrect">0</span> / <span id="statAttempted">0</span></div>
+                  <div class="mutedSmall">Avg Confidence: <span id="statConf">0</span></div>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </div>
+
+        <div id="feedback" class="card view" role="region" aria-label="Feedback" style="display:none">
+  <h2>Feedback</h2>
+  <div class="wire">
+    <div id="feedbackResult" style="font-weight:800; font-size:18px">Correct!</div>
+    <div id="feedbackText" class="mutedSmall"></div>  <!-- Add this if missing -->
+    <div id="feedbackBox" class="feedbackNote" style="display:none; margin-top:12px;"></div>
+    <div id="feedbackCoachNote" class="feedbackNote"></div>  <!-- For coach if separate -->
+    <div id="feedbackAiExplain" class="aiHintBox" style="margin-top:10px;"></div>
+    <div style="margin-top:12px" class="flex" aria-live="polite">
+      <button class="btn primary" id="feedbackNext">Next Question</button>
+      <button class="btn ghost" id="feedbackFinish">Finish & Results</button>
+      <div style="flex:1"></div>
+      <div class="mutedSmall" id="feedbackCountdown">Next in 15s</div>
+    </div>
+  </div>
+</div>
+
+        <div id="results" class="card view" role="region" aria-label="Results" style="display:none">
+          <h2>Results & Risk</h2>
+          <div class="wire">
+           <div class="resultsGrid">
+  <div class="resultCard">
+    <div class="tiny">🎯 Cyber Risk Score</div>
+    <div style="font-size:28px; font-weight:900; margin-top:6px" id="resRisk">72 / 100</div>
+    <div class="mutedSmall" id="resSummary">Medium — keep training</div>
+  </div>
+
+  <div class="resultCard">
+    <div class="tiny">✅ Correct Answers</div>
+    <div style="font-size:22px; font-weight:800; margin-top:6px" id="resCorrect">0 / 0</div>
+    <div class="mutedSmall">Avg Hesitation: <span id="resHes">0s</span></div>
+    <div class="mutedSmall">Avg Confidence: <span id="resConf">0</span></div>
+    <div class="mutedSmall">Avg Hover Time: <span id="resHover">0s</span></div>
+    <div class="mutedSmall">Avg Switches: <span id="resSwitch">0</span></div>
+  </div>
+</div>
+
+<!-- 🎭 PERSONA SECTION GOES HERE (AFTER resultsGrid) -->
+<div style="margin-top:20px">
+  <h3 class="tiny">🎭 Your Cyber Superhero Type</h3>
+  <div class="resultCard" style="background:rgba(139,0,255,0.06); border:2px solid var(--accent1);">
+    <div style="font-size:20px; font-weight:800; color:var(--accent2);" id="personaTitle">Loading your type...</div>
+    <div class="mutedSmall" style="margin-top:8px;" id="personaDesc">Finding out what kind of cyber hero you are!</div>
+  </div>
+</div>
+              <div style="margin-top:12px">
+              <h3 class="tiny">GPT Advice</h3>
+              <ul class="mutedSmall" id="gptTips">
+                <li>Don’t click unknown links</li>
+                <li>Report suspicious messages to IT</li>
+                <li>Use unique passphrases</li>
+              </ul>
+            </div>
+
+            <div style="margin-top:12px" class="flex">
+              <button class="btn primary" onclick="retakeQuiz()">Retake Quiz</button>
+              <button class="btn ghost" onclick="gotoView('dashboard')">Return to Dashboard</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="missions" class="card view" role="region" aria-label="Missions" style="display:none">
+          <h2>Missions</h2>
+          <div class="wire">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div class="tiny">Role-based missions</div>
+              <div><button class="btn primary" onclick="startMissionDemo()">Start Mission</button></div>
+            </div>
+
+            <div style="margin-top:12px">
+              <div class="missionRow" aria-hidden="false">
+                <div style="flex:1">
+                  <div class="missionTitle">Mission 1 — Phishing Quiz</div>
+                  <div class="mutedSmall">Complete phishing simulation</div>
+                  <div class="progressWrap"><div class="bar" id="m1bar" style="width:30%"></div></div>
+                </div>
+                <div style="width:120px; text-align:right"><button class="btn ghost" onclick="gotoView('quiz')">Start</button></div>
+              </div>
+
+              <div class="missionRow">
+                <div style="flex:1">
+                  <div class="missionTitle">Mission 2 — Password Strength</div>
+                  <div class="mutedSmall">Score above 80% on topics</div>
+                  <div class="progressWrap"><div class="bar" id="m2bar" style="width:50%"></div></div>
+                </div>
+                <div style="width:120px; text-align:right"><button class="btn ghost" onclick="simulateMissionComplete('password')">Simulate</button></div>
+              </div>
+
+              <div class="missionRow">
+                <div style="flex:1">
+                  <div class="missionTitle">Mission 3 — Challenge Teammate</div>
+                  <div class="mutedSmall">Unlock at level 2</div>
+                  <div class="progressWrap"><div class="bar" id="m3bar" style="width:0%"></div></div>
+                </div>
+                <div style="width:120px; text-align:right"><button class="btn ghost" onclick="alert('Locked — reach level 2 to unlock')">View</button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="leaderboard" class="card view" role="region" aria-label="Leaderboard" style="display:none">
+          <h2>Leaderboard</h2>
+          <div class="wire">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div class="tiny">Top players</div>
+              <div style="display:flex; gap:8px; align-items:center;">
+                <select id="roleFilter" aria-label="Filter by role" onchange="filterLeaderboard()">
+                  <option value="all">All Roles</option>
+                  <option value="Student">Student</option>
+                  <option value="Intern">Intern</option>
+                  <option value="Developer">Developer</option>
+                </select>
+                <button class="btn primary" onclick="gotoView('profile')">Profile</button>
+              </div>
+            </div>
+
+            <div style="margin-top:12px; overflow:auto;">
+  <table id="leaderTable" role="table" aria-label="Leaderboard table">
+    <thead><tr><th>Rank</th><th>Name</th><th>Score</th><th>Avg Confidence</th><th>Role</th></tr></thead>
+    <tbody></tbody>
+  </table>
+  <div id="leaderNo" class="noResults" style="display:none">No results for this filter</div>
+</div>
+</div>
+</div>
+          
+
+<!-- 🆕 ENHANCED ADMIN DASHBOARD - REPLACE ENTIRE OLD ADMIN SECTION -->
+<div id="admin" class="card view" role="region" aria-label="Admin" style="display:none">
+    <h2>👑 Admin Dashboard</h2>
+    <div class="wire">
+        <!-- KPI Cards -->
+        <div class="resultsGrid">
+            <div class="resultCard">
+                <div class="tiny">📊 Total Quizzes</div>
+                <div style="font-size:24px; font-weight:800;" id="adminTotalQuizzes">0</div>
+            </div>
+            <div class="resultCard">
+                <div class="tiny">🎯 Avg Risk Score</div>
+                <div style="font-size:24px; font-weight:800;" id="adminAvgRisk">0%</div>
+            </div>
+            <div class="resultCard">
+                <div class="tiny">⭐ Avg Confidence</div>
+                <div style="font-size:24px; font-weight:800;" id="adminAvgConfidence">0</div>
+            </div>
+            <div class="resultCard">
+                <div class="tiny">🎭 Top Persona</div>
+                <div style="font-size:18px; font-weight:800;" id="adminTopPersona">-</div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div style="margin-top:20px; display:flex; gap:10px; align-items:center;">
+            <button class="btn primary" onclick="loadAdminDashboard()">🔄 Refresh All Data</button>
+            <button class="btn ghost" onclick="exportAdminData()">📤 Export CSV</button>
+            <div style="flex:1"></div>
+            <select id="timeFilter" onchange="loadAdminDashboard()">
+                <option value="all">All Time</option>
+                <option value="week">Last Week</option>
+                <option value="day">Today</option>
+            </select>
+        </div>
+
+        <!-- Recent Sessions Table -->
+        <div style="margin-top:20px">
+            <h3 class="tiny">📋 Recent Quiz Sessions</h3>
+            <div style="overflow:auto; max-height:400px;">
+                <table style="width:100%; font-size:13px;">
+                    <thead>
+                        <tr>
+                            <th>Player</th>
+			    <th>Role</th>
+			    <th>Score</th>
+                            <th>Risk</th>
+                            <th>Persona</th>
+                            <th>Confidence</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminSessionsTable">
+                        <tr><td colspan="6" class="mutedSmall" style="text-align:center; padding:20px;">Loading data...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Persona Distribution -->
+        <div style="margin-top:20px">
+            <h3 class="tiny">📈 Persona Distribution</h3>
+            <div id="personaChart" style="height:200px; background:rgba(255,255,255,0.02); border-radius:8px; padding:10px;">
+                <canvas id="personaChartCanvas"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+        
+        <div id="profile" class="card view" role="region" aria-label="Profile" style="display:none">
+          <h2>Profile — <span id="profileName">Sravya</span></h2>
+          <div class="wire">
+            <div style="display:flex; gap:12px; align-items:flex-start;">
+              <div style="flex:1">
+                <div class="mutedSmall">Role: <strong id="profileRole">Intern</strong></div>
+                <div style="margin-top:8px; font-weight:800; font-size:18px">Current Risk: <span id="profileRisk">72%</span></div>
+                <div style="margin-top:8px" class="mutedSmall">Missions Completed: <span id="profileMissions">2 / 5</span></div>
+
+                <div style="margin-top:12px">
+                  <h3 class="tiny">Recent Sessions</h3>
+                  <div class="mutedSmall" id="recentSessions"></div>
+                </div>
+              </div>
+
+              <div style="width:220px;">
+                <div class="card">
+                  <div class="tiny">Actions</div>
+                  <div style="margin-top:8px;" class="flex">
+                    <button class="btn primary" onclick="gotoView('quiz')">Start New Quiz</button>
+                    <button class="btn ghost" onclick="gotoView('dashboard')">Back to Dashboard</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+<!-- Placeholder views for the new games -->
+<div id="gamePhishing" class="card view" style="display:none">
+  <h2>Phishing Simulator</h2>
+  <div class="wire">
+    <div class="phishLayout">
+      <!-- Email Panel -->
+      <div class="phishEmail">
+        <div class="phishHeader">
+          <div class="phishFrom" id="phishSender">Loading sender…</div>
+          <div class="phishSubject" id="phishSubject">Loading subject…</div>
+        </div>
+        <div class="phishMetaRow">
+          <span id="phishTag" class="phishTag">Inbox</span>
+          <span class="mutedSmall" id="phishTime">Just now</span>
+        </div>
+        <div class="phishBody" id="phishBody">
+          Loading email body…
+        </div>
+      </div>
+
+      <!-- Action / Feedback Panel -->
+      <div class="phishActions">
+        <div class="mutedSmall" style="margin-bottom:8px;">
+          Is this email safe to click, or is it a phishing attempt?
+        </div>
+        <div class="flex" style="margin-bottom:8px; gap:10px;">
+          <button class="btn ghost" onclick="evaluatePhish(false)">Looks Safe</button>
+          <button class="btn primary" onclick="evaluatePhish(true)">Looks Phishy</button>
+        </div>
+
+        <div id="phishFeedback" class="phishFeedback mutedSmall" style="display:none;"></div>
+        <div id="phishReason" class="phishReason mutedSmall" style="display:none; margin-top:6px;"></div>
+        <div id="phishTip" class="phishTip mutedSmall" style="display:none; margin-top:4px;"></div>
+
+        <div class="flex" style="margin-top:14px; gap:10px;">
+          <button class="btn ghost" onclick="startPhishingGame()">Try Another Email</button>
+          <button class="btn ghost" onclick="gotoView('landing')">Back to Landing</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="gameInspector" class="card view" style="display:none">
+  <h2>Website Inspector</h2>
+  <div class="wire">
+    <div class="inspectLayout">
+
+      <!-- Fake Website Preview -->
+      <div class="inspectSite">
+        <div class="fakeBrowserBar">
+          <span id="inspectorURL">https://secure-update-login.com</span>
+        </div>
+
+        <!-- Fake website image area -->
+        <div class="fakeSiteArea">
+          <div class="fakeSiteImg">
+  <!-- Fake Webpage SVG (always available & built-in) -->
+  <svg width="100%" height="260px" viewBox="0 0 600 300" style="border-radius:6px;">
+    <rect x="0" y="0" width="600" height="300" fill="rgba(255,255,255,0.02)" />
+
+    <!-- Header -->
+    <rect x="0" y="0" width="600" height="50" fill="rgba(255,255,255,0.06)" />
+
+    <!-- Fake logo -->
+    <rect x="20" y="12" width="80" height="26" fill="rgba(255,255,255,0.10)" />
+
+    <!-- Suspicious popup -->
+    <rect x="380" y="60" width="180" height="80" fill="rgba(255,0,0,0.20)" rx="6" />
+    <text x="395" y="95" fill="#fff" font-size="14">Login Required</text>
+
+    <!-- Download button -->
+    <rect x="200" y="220" width="180" height="42" fill="rgba(0,255,255,0.20)" rx="6" />
+    <text x="235" y="247" fill="#fff" font-size="15">Download File</text>
+  </svg>
+</div>
+
+
+          <!-- Click zones -->
+          <div class="inspectHotspot hotspot-url" onclick="checkInspectorChoice('url')"></div>
+          <div class="inspectHotspot hotspot-popup" onclick="checkInspectorChoice('popup')"></div>
+          <div class="inspectHotspot hotspot-download" onclick="checkInspectorChoice('download')"></div>
+        </div>
+      </div>
+
+      <!-- Feedback Panel -->
+      <div class="inspectFeedbackPanel">
+        <div class="mutedSmall">Tap the part of this website that looks suspicious.</div>
+
+        <div id="inspectResult" class="inspectResult" style="display:none;"></div>
+        <div id="inspectReason" class="inspectReason mutedSmall" style="display:none;"></div>
+        <div id="inspectTip" class="inspectTip mutedSmall" style="display:none;"></div>
+
+        <div style="margin-top:14px;" class="flex" gap="10px">
+          <button class="btn ghost" onclick="startInspectorGame()">Try Another Site</button>
+          <button class="btn ghost" onclick="gotoView('landing')">Back to Landing</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="gamePassword" class="card view" style="display:none">
+  <h2>Password Fortress</h2>
+
+  <div class="wire passwordGameBox">
+
+    <div class="mutedSmall">Type a password below to test its strength.</div>
+
+    <input 
+      id="pwInput" 
+      type="password" 
+      class="passwordInputField" 
+      placeholder="Enter your password..."
+      oninput="evaluatePasswordStrength()"
+    />
+
+    <!-- Strength Bar -->
+    <div class="strengthContainer">
+      <div id="pwStrengthBar" class="strengthBar"></div>
+    </div>
+
+    <!-- Score & Feedback -->
+    <div id="pwStrengthLabel" class="pwStrengthLabel mutedSmall"></div>
+    <div id="pwHint" class="pwHint mutedSmall"></div>
+
+    <div style="margin-top:16px;" class="flex" gap="10px">
+      <button class="btn ghost" onclick="resetPasswordGame()">Reset</button>
+      <button class="btn ghost" onclick="gotoView('landing')">Back to Landing</button>
+    </div>
+  </div>
+</div>
+
+<div id="gameWifi" class="card view" style="display:none">
+  <h2>Wi-Fi Threat Finder</h2>
+
+  <div class="wire wifiGameBox">
+    <div class="mutedSmall">Select the safest Wi-Fi network from the list below.</div>
+
+    <div class="wifiList" id="wifiList"></div>
+
+    <div id="wifiResult" class="wifiResult mutedSmall" style="display:none;"></div>
+    <div id="wifiReason" class="wifiReason mutedSmall" style="display:none; margin-top:6px;"></div>
+    <div id="wifiTip" class="wifiTip mutedSmall" style="display:none; margin-top:6px;"></div>
+
+    <div style="margin-top:16px;" class="flex" gap="10px">
+      <button class="btn ghost" onclick="startWifiGame()">Try Another Set</button>
+      <button class="btn ghost" onclick="gotoView('landing')">Back to Landing</button>
+    </div>
+  </div>
+</div>
+
+</section>
+
+      <aside class="right" aria-label="Sidebar">
+        <div class="card" role="complementary">
+          <h3 class="tiny">Missions Snapshot</h3>
+          <div style="margin-top:8px">
+            <div style="display:flex; justify-content:space-between;"><div class="mutedSmall">Phishing</div><div id="sideP" class="mutedSmall">30%</div></div>
+            <div class="progressWrap" style="margin-top:6px"><div class="bar" id="sideBarP" style="width:30%"></div></div>
+
+            <div style="margin-top:12px; display:flex; justify-content:space-between;"><div class="mutedSmall">Password</div><div id="sidePwd" class="mutedSmall">50%</div></div>
+            <div class="progressWrap" style="margin-top:6px"><div class="bar" id="sideBarPwd" style="width:50%"></div></div>
+
+            <div style="margin-top:12px; display:flex; justify-content:space-between;"><div class="mutedSmall">Wi-Fi</div><div id="sideW" class="mutedSmall">0%</div></div>
+            <div class="progressWrap" style="margin-top:6px"><div class="bar" id="sideBarW" style="width:0%"></div></div>
+
+            <div style="margin-top:12px">
+              <button class="btn primary" onclick="gotoView('quiz')">Take Quiz</button>
+              <button class="btn ghost" onclick="resetAll()">Reset</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+  <h3 class="tiny">Leaderboard</h3>
+  <div class="mutedSmall">Top performers</div>
+
+  <div id="sideLeaderboard" class="leaderboard-sidebar"></div>
+</div>
+
+          </div>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+ <!-- Replace your existing login modal with this code -->
+<div id="loginModal" class="overlay" role="dialog" aria-modal="true" aria-label="Login overlay" style="display: flex;">
+  <div class="overlayCard" role="document" style="flex-direction: column; text-align: center; padding: 30px;">
+    <div class="overlayText" style="width: 100%;">
+      <div class="logo" style="width: 80px; height: 80px; margin: 0 auto 20px; font-size: 32px; display: flex; align-items: center; justify-content: center;">
+        GS
+      </div>
+      <h1 style="margin: 0 0 10px 0; font-size: 24px; background: linear-gradient(90deg, var(--accent2), var(--accent1)); -webkit-background-clip: text; color: transparent;">Welcome to GameSecAI</h1>
+      <p style="margin: 0 0 25px 0; color: var(--muted);">Please enter your name to start your cybersecurity training journey.</p>
+      
+      <div style="margin-top: 20px;">
+        <input 
+          type="text" 
+          id="playerNameInput" 
+          placeholder="Enter your superhero name" 
+          style="width: 100%; padding: 14px; border-radius: 10px; border: 1px solid rgba(139,0,255,0.3); background: rgba(255,255,255,0.08); color: var(--text); font-size: 16px; margin-bottom: 12px;"
+          onkeypress="if(event.key === 'Enter') document.getElementById('loginStart').click()"
+        />
+        <select 
+          id="playerRoleSelect" 
+          style="width: 100%; padding: 14px; border-radius: 10px; border: 1px solid rgba(139,0,255,0.3); background: rgba(255,255,255,0.08); color: var(--text); font-size: 16px;"
+        >
+          <option value="Admin">Admin</option>
+	  <option value="Student">🎓 Student</option>
+          <option value="Intern">💼 Intern</option>
+          <option value="Developer">💻 Developer</option>
+          <option value="Employee">👨‍💼 Employee</option>
+          <option value="Manager">👔 Manager</option>
+        </select>
+      </div>
+      
+      <div class="overlayCta" style="margin-top: 25px; justify-content: center;">
+        <button class="btn primary" id="loginStart" style="padding: 12px 24px; font-size: 16px; font-weight: 600;">
+          🚀 Start Training
+        </button>
+        <button class="btn ghost" id="loginGuest" style="padding: 12px 24px; font-size: 16px;">
+          👻 Continue as Guest
+        </button>
+      </div>
+      
+      <div class="mutedSmall" style="margin-top: 20px; font-size: 12px;">
+        💡 Tip: Your progress will be saved under your chosen name
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script src="js/main.js"></script>
+
+
+
+</body>
+</html>
