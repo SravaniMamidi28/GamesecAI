@@ -1,13 +1,13 @@
-# 🎮 GameSecAI
+# GameSecAI
 ### An Adaptive, AI-Powered Cybersecurity Awareness Platform  
 
-⚠️ **Note:**  
+Note:
 This platform is part of an academic capstone project.  
 It is **not IRB-approved for public research participation**, and the live deployment is intended **solely for faculty review and demonstration.**
 
 ---
 
-## 📌 Overview
+# Overview
 GameSecAI is a browser-based cybersecurity training platform that combines **AI-powered adaptive learning**, **behavioral analytics**, and **gamified threat simulations**.  
 It evaluates not just *what* users answer — but *how* they think, react, and behave during cybersecurity decision-making.
 
@@ -20,14 +20,14 @@ GameSecAI integrates:
 
 ---
 
-## ⭐ Features
+## Features
 
-### 🔹 AI-Based Adaptive Questioning
+# AI-Based Adaptive Questioning
 - Dynamically generated or modified questions via Google Gemini  
 - Difficulty adjusts based on user behavior and accuracy  
 - Personalized explanations after each question  
 
-### 🔹 Behavioral Analysis
+# Behavioral Analysis
 Tracks:
 - Response time (hesitation)
 - Hover time
@@ -35,13 +35,13 @@ Tracks:
 - Confidence levels
 - Accuracy
 
-### 🔹 Gamified Missions
+# Gamified Missions
 - Phishing  
 - Password Strength  
 - Unsafe Websites  
 - Wi-Fi Threat Detection  
 
-### 🔹 Risk Scoring System
+# Risk Scoring System
 M = (Phishing + Password + WiFi) / 3
 R = 100 - M
 
@@ -53,7 +53,7 @@ Personas include:
 - Overthinker  
 - Risky Clicker  
 
-### 🔹 Admin Dashboard
+# Admin Dashboard
 - Leaderboard  
 - Performance logs  
 - CSV export  
@@ -61,7 +61,7 @@ Personas include:
 
 ---
 
-## 🏗️ Project Structure
+# Project Structure
 
 GameSecAI/
 │── Demo/
@@ -82,23 +82,23 @@ Copy code
 
 ---
 
-## 🛠️ Tech Stack
+# Tech Stack
 
-**Frontend:**  
+Frontend:  
 - HTML, CSS, JavaScript  
 - Chart.js  
 
-**Backend:**  
+Backend: 
 - Firebase Hosting  
 - Firebase Firestore  
 - Firebase Cloud Functions  
 
-**AI Engine:**  
+AI Engine: 
 - Google Gemini 2.5 Flash  
 
 ---
 
-## 🚀 How to Run Locally (Developer Setup Only)
+# How to Run Locally (Developer Setup Only)
 
 git clone https://github.com/SravaniMamidi28/GameSecAI.git
 cd GameSecAI/Demo
@@ -107,7 +107,7 @@ firebase login
 firebase serve
 (Deployment to Firebase is limited to internal academic reviewers.)
 
-👩‍💻 Authors
+Authors
 
 
 Kale Sanjana Eswara Rao
@@ -119,7 +119,7 @@ mamidisravanisravya@gmail.com
 Sudini Shashanth Reddy
 shashanthreddy18@gmail.com
 
-📄 Project License
+Project License
 No open-source license is applied.
 All rights reserved.
 This project is for academic evaluation only.
